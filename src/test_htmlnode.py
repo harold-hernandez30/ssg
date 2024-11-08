@@ -5,6 +5,11 @@ from htmlnode import HTMLNode
 
 class TestHTMLNode(unittest.TestCase):
 
+    def test_repr(self):
+        node = HTMLNode('a', '', "link", { "href": "http://google.com", "target":"_blank"})
+        self.assertEqual(f'HTMLNode(a,'',children:link,href="http://google.com" target="_blank")', node.__repr__())
+
+
     def test_html_node(self):
         node = HTMLNode('a', '', "link", { "href": "http://google.com", "target":"_blank"})
         self.assertEqual('href="http://google.com" target="_blank"', node.props_to_html())
