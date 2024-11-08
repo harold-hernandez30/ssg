@@ -3,7 +3,7 @@ from textnode import TextType
 
 def main():
     print("Hello")
-    node = TextNode("This is the text", TextType.HTML, "http://google.com")
+    node = TextNode("This is the text", TextType.BOLD, "http://google.com")
     print(f"node: {node}")
 
 
