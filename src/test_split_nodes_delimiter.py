@@ -58,8 +58,6 @@ class TestSplitNodesDelimiter(unittest.TestCase):
             TextNode("code", TextType.CODE),
             TextNode(" _you_ got there", TextType.NORMAL)
         ], code_node)
-
-        
         
         code_node = split_nodes_delimiter([node], "_", TextType.ITALIC)
         self.assertEqual([
@@ -67,22 +65,3 @@ class TestSplitNodesDelimiter(unittest.TestCase):
             TextNode("you", TextType.ITALIC),
             TextNode(" got there", TextType.NORMAL)
         ], code_node)
-
-        # code_node = split_nodes_delimiter([node], "`", TextType.CODE)
-        # italic_node = split_nodes_delimiter([node], "_", TextType.ITALIC)
-        # normal_node = [TextNode("got there", TextType.NORMAL)]
-
-        # result = []
-        # result.extend(bold_node)
-        # result.extend(code_node)
-        # result.extend(italic_node)
-        # result.extend(normal_node)
-
-        # expected = [
-        #     TextNode("bold ", TextType.BOLD),
-        #     TextNode("code ", TextType.CODE),
-        #     TextNode("you ", TextType.ITALIC),
-        #     TextNode("got there", TextType.NORMAL),
-        #     ]
-        
-        # self.assertEqual(expected, result)
