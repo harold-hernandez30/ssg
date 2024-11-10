@@ -7,15 +7,15 @@ def assert_closing_delimiter(text, delimiter):
 
 def split_nodes_delimiter(old_nodes, delimiter, text_type):
     def split_node(node):
-        text_arr = node.text.split(delimiter)
-        target_text = enclosed_text(node.text, delimiter)
+        line = node.text
+        text_arr = list(filter(lambda item : len(item) > 0, line.split(delimiter)))
+        target_text = enclosed_text(line, delimiter)
 
         def convert(text):
             if text == target_text:
                 return TextNode(text, text_type)
             else:
                 return TextNode(text, TextType.NORMAL)
-
 
         
         splitted_node_debug = list(map(convert, text_arr))

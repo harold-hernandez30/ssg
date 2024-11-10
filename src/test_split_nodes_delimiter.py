@@ -15,3 +15,27 @@ class TestSplitNodesDelimiter(unittest.TestCase):
             ]
         
         self.assertEqual(expected, new_nodes)
+
+    def test_bold(self):
+        
+        node = TextNode("This is text with a *bold text* word", TextType.NORMAL)
+        new_nodes = split_nodes_delimiter([node], "*", TextType.BOLD)
+
+        expected = [
+            TextNode("This is text with a ", TextType.NORMAL),
+            TextNode("bold text", TextType.BOLD),
+            TextNode(" word", TextType.NORMAL)
+            ]
+        
+        self.assertEqual(expected, new_nodes)
+
+    def test_entire_line_delimited(self):
+        
+        node = TextNode("*This is text with a bold text word*", TextType.NORMAL)
+        new_nodes = split_nodes_delimiter([node], "*", TextType.BOLD)
+
+        expected = [
+            TextNode("This is text with a bold text word", TextType.BOLD)
+            ]
+        
+        self.assertEqual(expected, new_nodes)
