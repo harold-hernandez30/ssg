@@ -34,9 +34,7 @@ class TestSplitNodesDelimiter(unittest.TestCase):
         node = TextNode("*This is text with a bold text word*", TextType.NORMAL)
         new_nodes = split_nodes_delimiter([node], "*", TextType.BOLD)
 
-        expected = [
-            TextNode("This is text with a bold text word", TextType.BOLD)
-            ]
+        expected = [ TextNode("This is text with a bold text word", TextType.BOLD)]
         
         self.assertEqual(expected, new_nodes)
 
@@ -65,3 +63,22 @@ class TestSplitNodesDelimiter(unittest.TestCase):
             TextNode("you", TextType.ITALIC),
             TextNode(" got there", TextType.NORMAL)
         ], code_node)
+
+    def test_multiple_nodes(self):
+        first_node = TextNode("First node *bold* word", TextType.NORMAL)
+        second_node = TextNode("Second node *another bold* word", TextType.NORMAL)
+        third_node = TextNode("Third node *last bold* word", TextType.NORMAL)
+        result = split_nodes_delimiter([first_node, second_node, third_node], "*", TextType.BOLD)
+
+        expected = [
+            TextNode("First node ", TextType.NORMAL),
+            TextNode("bold", TextType.BOLD),
+            TextNode(" word", TextType.NORMAL),
+            TextNode("Second node ", TextType.NORMAL),
+            TextNode("another bold", TextType.BOLD),
+            TextNode(" word", TextType.NORMAL),
+            TextNode("Third node ", TextType.NORMAL),
+            TextNode("last bold", TextType.BOLD),
+            TextNode(" word", TextType.NORMAL),
+        ]
+        self.assertEqual(expected, result)
