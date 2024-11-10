@@ -32,7 +32,5 @@ class TestTextNodeToHTMLNode(unittest.TestCase):
     def test_unsupported_text_typ(self):
         try:
             text_node_to_html_node(TextNode("Some Text", "SomeTextTYpe"))
-            print("this should not print")
         except:
-            print("Expecting exception")
             self.assertRaises(Exception)
