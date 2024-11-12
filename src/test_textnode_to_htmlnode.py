@@ -22,11 +22,11 @@ class TestTextNodeToHTMLNode(unittest.TestCase):
         self.assertEqual("<code>Hello, world</code>", leaf_node.to_html())
     
     def test_img(self):
-        leaf_node = text_node_to_html_node(TextNode("Some Image", TextType.IMAGES, "http://google.com"))
+        leaf_node = text_node_to_html_node(TextNode("Some Image", TextType.IMAGE, "http://google.com"))
         self.assertEqual("""<img src="http://google.com" alt="Some Image">""", leaf_node.to_html())
     
     def test_anchor(self):
-        leaf_node = text_node_to_html_node(TextNode("Some Text", TextType.LINKS, "http://google.com"))
+        leaf_node = text_node_to_html_node(TextNode("Some Text", TextType.LINK, "http://google.com"))
         self.assertEqual("""<a href="http://google.com">Some Text</a>""", leaf_node.to_html())
 
     def test_unsupported_text_typ(self):
