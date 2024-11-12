@@ -8,7 +8,9 @@ def split_nodes_image(old_nodes):
         text_remaining = node.text
         markdown_links = extract_markdown_images(node.text)
     
-
+        if len(markdown_links) == 0:
+            new_nodes.append(node)
+            
         for i in range(len(markdown_links)):
             markdown_link = markdown_links[i]
             text, url = markdown_link
