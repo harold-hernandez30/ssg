@@ -1,22 +1,23 @@
 import re
+from blocktype import BlockType
 
 def block_to_block_type(block):
-    block_type = "paragraph"
+    block_type = BlockType.PARAGRAPH
 
     if is_code(block):
-        block_type = "code"
+        block_type = BlockType.CODE
 
     if is_heading(block):
-        block_type = "heading"
+        block_type = BlockType.HEADING
 
     if is_quote(block):
-        block_type = "quote"
+        block_type = BlockType.QUOTE
 
     if is_ordered(block):
-        block_type = "ordered"
+        block_type = BlockType.ORDERED_LIST
 
     if is_unorderd(block):
-        block_type = "unordered"
+        block_type = BlockType.UNORDERED_LIST
 
     return block_type
 

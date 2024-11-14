@@ -17,4 +17,4 @@ def text_node_to_html_node(text_node):
         case TextType.LINK:
             return LeafNode('a', text_node.text, {"href":text_node.url})
         case _:
-            raise Exception("TextType: {text_node.type} is not supported")
+            raise Exception(f"TextType: {text_node.text_type} is not supported")

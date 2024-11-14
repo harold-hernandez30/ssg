@@ -1,6 +1,7 @@
 import unittest
 
 from block_to_block_type import block_to_block_type, is_code, is_heading, is_ordered, is_quote, is_unorderd
+from blocktype import BlockType
 
 class TestBlockToBlockType(unittest.TestCase):
     # def test_base(self):
@@ -11,12 +12,12 @@ class TestBlockToBlockType(unittest.TestCase):
     def test_paragraph(self):
         normal_paragraph = "this is a paragraph"
         multi_line_paragraph = "line 1 of paragraph\n line 2 of paragraph"
-        self.assertEqual("paragraph", block_to_block_type(normal_paragraph))
-        self.assertEqual("paragraph", block_to_block_type(multi_line_paragraph))
+        self.assertEqual(BlockType.PARAGRAPH, block_to_block_type(normal_paragraph))
+        self.assertEqual(BlockType.PARAGRAPH, block_to_block_type(multi_line_paragraph))
 
     def test_code(self):
         code_block = "``` this is your code ```"
-        self.assertEqual("code", block_to_block_type(code_block))
+        self.assertEqual(BlockType.CODE, block_to_block_type(code_block))
 
     def test_heading(self):
         not_a_heading = "not a heading"
@@ -27,31 +28,31 @@ class TestBlockToBlockType(unittest.TestCase):
         heading5 = "##### some heading 5"
         heading6 = "###### some heading 6"
         heading_7_more = "####### some heading n"
-        self.assertEqual("heading", block_to_block_type(heading1))
-        self.assertEqual("heading", block_to_block_type(heading2))
-        self.assertEqual("heading", block_to_block_type(heading3))
-        self.assertEqual("heading", block_to_block_type(heading4))
-        self.assertEqual("heading", block_to_block_type(heading5))
-        self.assertEqual("heading", block_to_block_type(heading6))
-        self.assertEqual("paragraph", block_to_block_type(heading_7_more))
-        self.assertEqual("paragraph", block_to_block_type(not_a_heading))
+        self.assertEqual(BlockType.HEADING, block_to_block_type(heading1))
+        self.assertEqual(BlockType.HEADING, block_to_block_type(heading2))
+        self.assertEqual(BlockType.HEADING, block_to_block_type(heading3))
+        self.assertEqual(BlockType.HEADING, block_to_block_type(heading4))
+        self.assertEqual(BlockType.HEADING, block_to_block_type(heading5))
+        self.assertEqual(BlockType.HEADING, block_to_block_type(heading6))
+        self.assertEqual(BlockType.PARAGRAPH, block_to_block_type(heading_7_more))
+        self.assertEqual(BlockType.PARAGRAPH, block_to_block_type(not_a_heading))
 
 
     def test_quote(self):
         quote_text = "> this is a quote"
         not_a_quote = "this is not a quote"
-        self.assertEqual("quote", block_to_block_type(quote_text))
-        self.assertEqual("paragraph", block_to_block_type(not_a_quote))
+        self.assertEqual(BlockType.QUOTE, block_to_block_type(quote_text))
+        self.assertEqual(BlockType.PARAGRAPH, block_to_block_type(not_a_quote))
 
     def test_unordered_list(self):
         unordered_list_hyphen = "- Item 1\n - Item 2\n - Item 3"
         unordered_list_asterisk = "* Item 1\n * Item 2\n * Item 3"
-        self.assertEqual("unordered", block_to_block_type(unordered_list_hyphen))
-        self.assertEqual("unordered", block_to_block_type(unordered_list_asterisk))
+        self.assertEqual(BlockType.UNORDERED_LIST, block_to_block_type(unordered_list_hyphen))
+        self.assertEqual(BlockType.UNORDERED_LIST, block_to_block_type(unordered_list_asterisk))
 
     def test_ordered_list(self):
         ordered_list = "1. Item 1\n 2. Item 2\n 3. Item 3"
-        self.assertEqual("ordered", block_to_block_type(ordered_list))
+        self.assertEqual(BlockType.ORDERED_LIST, block_to_block_type(ordered_list))
 
     # Helper function tests
 
