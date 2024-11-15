@@ -1,27 +1,28 @@
-from textnode import TextNode
-from textnode import TextType
-from htmlnode import HTMLNode
-from leafnode import LeafNode
-from parentnode import ParentNode
+from os import path, mkdir, listdir
+from shutil import copy, rmtree
+import sys
 
 def main():
-    print("Hello")
-    node = TextNode("This is the text", TextType.BOLD, "http://google.com")
-    print(f"node: {node}")
-    html_node = HTMLNode("a", "another val", "hello", {"href": "http://google.com", "target": "_blank"})
-    print(f"html node: {html_node}")
-    print(f"props: {html_node.props_to_html()}")
-    leaf_node = LeafNode("a", "some val", {"href": "http://google.com", "target": "_blank"})
-    print(f"leaf_node: {leaf_node.props_to_html()}")
-    print(f"leaf_node: {leaf_node.__repr__()}")
-    parent_node = ParentNode("div",  [
-        LeafNode("b", "Bold text"),
-        LeafNode(None, "Normal text"),
-        LeafNode("i", "italic text"),
-        LeafNode(None, "Normal text"),
-    ], {"href": "http://google.com", "target": "_blank"})
-    print(f"parent_node: {parent_node.to_html()}")
+    if path.exists('public'):
+        print("deleting existing public directory")
+        rmtree('public')
 
+    copy_tree("static", "public") 
+
+def copy_tree(src, dst):
+    print(f"src: {src}")
+    print(f"dst: {dst}")
+    if path.isfile(src):
+        copy(src, dst)
+        print(f"file copied from: {src} \n copied to: {dst}")
+    else:
+        
+        if not path.exists(dst):
+            print(f"dst_directory to be created: {dst}")
+            mkdir(dst)
+
+        for file in listdir(src):
+            copy_tree(path.join(src, file), path.join(dst, file))
 
 
 main()
