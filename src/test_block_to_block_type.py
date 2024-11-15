@@ -4,10 +4,6 @@ from block_to_block_type import block_to_block_type, is_code, is_heading, is_ord
 from blocktype import BlockType
 
 class TestBlockToBlockType(unittest.TestCase):
-    # def test_base(self):
-    #     expected = []
-    #     result = block_to_block_type("")
-    #     self.assertEqual(expected, result)
 
     def test_paragraph(self):
         normal_paragraph = "this is a paragraph"
@@ -59,6 +55,13 @@ class TestBlockToBlockType(unittest.TestCase):
     def test_helpers_code(self):
         self.assertEqual(True, is_code("``` this is a code ```"))
         self.assertEqual(True, is_code("```this is a code```"))
+        self.assertEqual(True, is_code((
+"""
+```
+this is a code
+```
+"""
+)))
         self.assertEqual(False, is_code("```this is not a code"))
 
     def test_helpers_heading(self):

@@ -54,20 +54,16 @@ class TestBlockToBlockNode(unittest.TestCase):
             ]).to_html()
         self.assertEqual(expected1, block_code("```this is code\nanother code```").to_html())
         
-
-        # FIXME: does not support multiline code
-#         expected2 = ParentNode('pre', 
-#                 [
-#                     ParentNode('code', [LeafNode(None, "this is code"), LeafNode(None, "Another code")])
-#                 ]).to_html()
-#         self.assertEqual(expected2, block_code(
-# """
-# ```
-# this is code
-# Another code
-
-# ```            
-# """).to_html())
+        expected2 = (
+"""<pre><code>func main(){
+    fmt.Println("Hello, world!")
+}</code></pre>""")
+        self.assertEqual(expected2, block_code(
+"""```
+func main(){
+    fmt.Println("Hello, world!")
+}
+```""").to_html())
         
     def test_quote(self):
 

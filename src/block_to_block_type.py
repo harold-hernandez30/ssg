@@ -22,7 +22,7 @@ def block_to_block_type(block):
     return block_type
 
 def is_code(block):
-    return len(re.findall(r"^`{3}(.*?)`{3}$", block)) > 0
+    return len(re.findall(r"`{3}.*?`{3}", block, re.DOTALL)) > 0
 
 def is_heading(block):
     # FIXME: should exactly have one space between # and "heading text"

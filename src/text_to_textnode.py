@@ -10,8 +10,9 @@ def text_to_textnode(text):
 
     image_nodes = split_nodes_image(nodes)
     bold_nodes = split_nodes_delimiter(image_nodes, '**', TextType.BOLD)
-    italic_nodes = split_nodes_delimiter(bold_nodes, '*', TextType.ITALIC)
-    code_nodes = split_nodes_delimiter(italic_nodes, '`', TextType.CODE)
+    italic_nodes_underscore = split_nodes_delimiter(bold_nodes, '_', TextType.ITALIC)
+    italic_nodes_asterisk = split_nodes_delimiter(italic_nodes_underscore, '*', TextType.ITALIC)
+    code_nodes = split_nodes_delimiter(italic_nodes_asterisk, '`', TextType.CODE)
     all_nodes = split_nodes_link(code_nodes)
 
     return all_nodes
