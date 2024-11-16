@@ -17,8 +17,12 @@ def split_nodes_link(old_nodes):
             text, url = markdown_link
             text_arr =  text_remaining.split(f"[{text}]({url})", 1)
             text_left_hand = text_arr[0]
-            text_remaining = text_arr[1]
-            new_nodes.append(TextNode(text_left_hand, TextType.NORMAL))
+            if len(text_arr) > 1:
+                text_remaining = text_arr[1]
+            else:
+                text_remaining = None
+            if (text_left_hand): 
+                new_nodes.append(TextNode(text_left_hand, TextType.NORMAL))
             new_nodes.append(TextNode(text, TextType.LINK, url))
 
             if i == len(markdown_links) - 1 and text_remaining:

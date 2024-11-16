@@ -17,7 +17,8 @@ def split_nodes_image(old_nodes):
             text_arr =  text_remaining.split(f"![{text}]({url})", 1)
             text_left_hand = text_arr[0]
             text_remaining = text_arr[1]
-            new_nodes.append(TextNode(text_left_hand, TextType.NORMAL))
+            if text_left_hand:
+                new_nodes.append(TextNode(text_left_hand, TextType.NORMAL))
             new_nodes.append(TextNode(text, TextType.IMAGE, url))
 
             if i == len(markdown_links) - 1 and text_remaining:

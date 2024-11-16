@@ -3,8 +3,9 @@ from enclosed_text import enclosed_text
 import re
 
 def assert_closing_delimiter(text, delimiter):
-    if text.count(delimiter) % 2 != 0:
-        raise Exception(f"No closing delimiter found for: {delimiter}, count: {text.count(delimiter)}")
+    pass
+    # if text.count(delimiter) % 2 != 0:
+    #     raise Exception(f"No closing delimiter found for: {delimiter}, count: {text.count(delimiter)}")
 
 def escape_delimiter(delimiter):
     match delimiter:

@@ -22,3 +22,13 @@ class TestSplitNodeLink(unittest.TestCase):
             ),
             TextNode(". Tada!", TextType.NORMAL),
         ], new_nodes)
+
+    def test_link(self):
+        node = TextNode("[Back Home](/)", TextType.NORMAL)
+
+        new_nodes = split_nodes_link([node])      
+        self.assertEqual([
+            TextNode(
+                "Back Home", TextType.LINK, "/"
+            )
+        ], new_nodes)

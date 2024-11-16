@@ -34,8 +34,7 @@ class TestHTMLNode(unittest.TestCase):
                 super().__init__(tag, value, children, props)
 
         try: 
-            res = AnchorHtmlNode().to_html()
-            print(f"No exception here")
+            AnchorHtmlNode().to_html()
             self.assertEqual("Foo")
         except NotImplementedError:
             self.assertRaisesRegex(expected_exception=NotImplementedError, expected_regex="")

@@ -115,3 +115,13 @@ func main(){
         
         expected3 = "<ol><li>Item 1</li><li>Item 2</li><li>Item 3</li></ol>"
         self.assertEqual(expected3, block_ordered("1. Item 1\n 2. Item 2\n 3. Item 3").to_html())
+
+        data = (
+"""
+1. [ ] An elaborate pantheon of deities (the `Valar` and `Maiar`)
+2. [ ] The tragic saga of the Noldor Elves
+"""
+        )
+        expected = "<ol><li>[ ] An elaborate pantheon of deities (the <code>Valar</code> and <code>Maiar</code>)</li><li>[ ] The tragic saga of the Noldor Elves</li></ol>"
+        
+        self.assertEqual(expected, block_ordered(data).to_html())

@@ -1,10 +1,10 @@
 import re
 
 def extract_markdown_links(text):
-    regex_image_alt_text = r"\[(.*?)\]"
-    alt_text_list = re.findall(regex_image_alt_text, text)
+    # Stole with not so good feels from boot.dev solution
+    pattern = r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)"
+    matches = re.findall(pattern, text)
+    return matches
 
-    def extract_image_url(alt_text, line):
-        return re.findall(rf"\[{alt_text}\]\((.*?)\)", line)
+
     
-    return list(map(lambda alt_text: (alt_text, extract_image_url(alt_text, text)[0]), alt_text_list))

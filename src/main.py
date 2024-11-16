@@ -1,6 +1,6 @@
 from os import path, mkdir, listdir
 from shutil import copy, rmtree
-from generate_page import generate_page
+from generate_page import generate_page, generate_pages_recursive
 
 def main():
     if path.exists('public'):
@@ -9,7 +9,7 @@ def main():
 
     copy_tree("static", "public") 
 
-    generate_page("content/index.md", "template.html", "public/index.html")
+    generate_pages_recursive("content", "template.html", "public")
 
 def copy_tree(src, dst):
     if path.isfile(src):

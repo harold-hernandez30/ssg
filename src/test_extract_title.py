@@ -16,5 +16,4 @@ class TestExtractTitle(unittest.TestCase):
         try:
             extract_title(input)
         except:
-            print("Exception raised")
             self.assertRaises(expected_exception=Exception)
